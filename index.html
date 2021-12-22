@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="tomyPassword.jquery.js"></script>
+
+    <script>
+
+        $(document).ready(function() {        
+            // Carga del plugin para los campos
+            $('input[name="password"], input[name="repassword"]').tomyPassword();
+             
+
+            // validación del formulario
+            $('input[type="submit"]').click(function(event){
+
+                if($('input[name="password"]').data('validado') === false){
+                    alert('la contraseña no tiene formato válido');
+                    event.preventDefault();
+
+                }else if($('input[name="repassword"]').data('validado') === false){
+                    alert('la confirmación de contraseña no tiene formato válido');
+                    event.preventDefault();
+
+                }else if($('input[name="password"]').val() != $('input[name="repassword"]').val()){
+                    alert('La contraseña y la confirmación no coinciden')
+                    event.preventDefault();
+                }
+            });
+        });
+
+        
+
+
+    </script>
+
+    <style>
+        /* capa que carga los avisos */
+        .tomyPassword{
+            position: absolute; 
+            left: 0; 
+            top: -150px; 
+            z-index: 300;
+            background-color: #fff;
+            width: 270px;
+            border:solid 1px red
+        }
+
+
+        /* clases usadas en el desplegable, se pueden pasar como parámetro en el plugin */
+        .texto-rojo{
+            color:red
+        }
+        .texto-verde{
+            color:green
+        }
+
+    </style>
+
+</head>
+<body>
+
+
+
+
+<form action="action" method="post">
+<table style="margin-top: 250px;">
+    <tr>
+        <td>Nombre</td>
+        <td><input type="text" name="name"></td>
+    </tr>
+    <tr>
+        <td>Contraseña</td>
+        <td><input type="password" name="password"></td>
+    </tr>
+    <tr>
+        <td>Repetir Contraseña</td>
+        <td><input type="password" name="repassword"></td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input type="submit" value="enviar">
+        </td>
+    </tr>
+</table>
+</form>
+    
+</body>
+</html>
